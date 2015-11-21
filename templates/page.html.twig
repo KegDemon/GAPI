@@ -1,0 +1,48 @@
+<html>
+    
+    <head>
+        {% block header %}
+            <title>
+                RSR GA API Test
+            </title>
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        {% endblock header %}
+    </head>
+    
+    <body>
+        <table class="table table-striped">
+            <th>
+                ID
+            </th>
+            <th>
+                Site
+            </th>
+        {% for title in titles %}
+            <th>
+                {{title}}
+            </th>
+        {% endfor %}
+            <th>
+                Dates
+            </th>
+        {% for req in data %}
+            <tr>
+                {% for items in req %}
+                <td>   
+                    {% if loop.index0 == 1 or loop.index0 == 0 %} 
+                        {{items}} 
+                    {% else %} 
+                        {{items|round(2)}} {# use |round filter here to round to sensible numbers #} 
+                    {% endif %}    
+                </td>
+                {% endfor %}
+                <td>
+                    {{dates.start}} - {{dates.end}}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </body>
+    
+    
+</html>
